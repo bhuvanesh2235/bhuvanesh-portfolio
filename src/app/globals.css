@@ -1,26 +1,267 @@
+/* src/app/globals.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @import "tailwindcss";
 
+/* ── Tailwind v4 Theme ─────────────────────────────────────── */
+@theme {
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --color-bg:       hsl(220 14% 4%);
+  --color-surface:  hsl(220 14% 7%);
+  --color-surface2: hsl(220 12% 11%);
+  --color-border:   hsl(220 15% 16%);
+  --color-text:     hsl(210 20% 95%);
+  --color-muted:    hsl(215 16% 55%);
+  --color-violet:   hsl(262 84% 58%);
+  --color-cyan:     hsl(186 100% 42%);
+
+  --shadow-glow-violet: 0 0 40px hsl(262 84% 58% / 0.3);
+  --shadow-glow-cyan:   0 0 40px hsl(186 100% 42% / 0.25);
+  --shadow-card:        0 4px 32px hsl(220 14% 4% / 0.5);
+
+  --animate-float:      float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4,0,0.6,1) infinite;
+  --animate-fade-in:    fadeIn 0.6s ease forwards;
+  --animate-slide-up:   slideUp 0.6s ease forwards;
+
+  --keyframes-float: {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+  };
+  --keyframes-fadeIn: {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  };
+  --keyframes-slideUp: {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  };
+}
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark theme (default) */
+  --bg:           220 14% 4%;
+  --surface:      220 14% 7%;
+  --surface-2:    220 12% 11%;
+  --border:       220 15% 16%;
+  --text:         210 20% 95%;
+  --muted:        215 16% 55%;
+  --accent-v:     262 84% 58%;   /* violet */
+  --accent-c:     186 100% 42%;  /* cyan */
+
+  /* Resolved values (used in components) */
+  --color-bg:       hsl(var(--bg));
+  --color-surface:  hsl(var(--surface));
+  --color-surface2: hsl(var(--surface-2));
+  --color-border:   hsl(var(--border));
+  --color-text:     hsl(var(--text));
+  --color-muted:    hsl(var(--muted));
+  --color-violet:   hsl(var(--accent-v));
+  --color-cyan:     hsl(var(--accent-c));
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.light {
+  --bg:       210 20% 98%;
+  --surface:  210 20% 94%;
+  --surface-2:210 15% 88%;
+  --border:   210 15% 80%;
+  --text:     220 30% 10%;
+  --muted:    215 15% 45%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent-v)); }
+
+/* ── Gradient text utility ─────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-violet), var(--color-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card utility ────────────────────────────────────── */
+.glass {
+  background: hsl(var(--surface) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* ── Glow utilities ────────────────────────────────────────── */
+.glow-violet {
+  box-shadow: 0 0 30px hsl(var(--accent-v) / 0.25);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 30px hsl(var(--accent-c) / 0.2);
+}
+
+/* ── Noise texture overlay ─────────────────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Section spacing ───────────────────────────────────────── */
+.section {
+  padding: 6rem 0;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 4rem 0; }
+}
+
+/* ── Animated underline ────────────────────────────────────── */
+.animated-underline {
+  position: relative;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-violet), var(--color-cyan));
+  transition: width 0.3s ease;
+}
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Bento grid ────────────────────────────────────────────── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+/* ── Tag pill ──────────────────────────────────────────────── */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: hsl(var(--accent-v) / 0.12);
+  color: var(--color-violet);
+  border: 1px solid hsl(var(--accent-v) / 0.25);
+}
+
+/* ── Timeline ──────────────────────────────────────────────── */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, hsl(var(--border)), transparent);
+  transform: translateX(-50%);
+}
+
+/* ── Focus styles ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+/* ── Selection color ───────────────────────────────────────── */
+::selection {
+  background: hsl(var(--accent-v) / 0.3);
+  color: var(--color-text);
+}
+
+/* ── Gradient backgrounds ──────────────────────────────────── */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--color-violet), var(--color-cyan));
+}
+
+.bg-gradient-subtle {
+  background: linear-gradient(135deg,
+    hsl(var(--accent-v) / 0.12),
+    hsl(var(--accent-c) / 0.08));
+}
+
+/* ── Glow shadows ──────────────────────────────────────────── */
+.shadow-glow-violet,
+.hover\:shadow-glow-violet:hover {
+  box-shadow: 0 0 40px hsl(var(--accent-v) / 0.35), 0 0 80px hsl(var(--accent-v) / 0.15);
+}
+
+.shadow-glow-cyan,
+.hover\:shadow-glow-cyan:hover {
+  box-shadow: 0 0 40px hsl(var(--accent-c) / 0.3), 0 0 80px hsl(var(--accent-c) / 0.12);
+}
+
+/* ── Keyframe animations ───────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float       { animation: float 6s ease-in-out infinite; }
+.animate-pulse-slow  { animation: pulse 4s cubic-bezier(0.4,0,0.6,1) infinite; }
+.animate-fade-in     { animation: fadeIn 0.6s ease forwards; }
+.animate-slide-up    { animation: slideUp 0.6s ease forwards; }
+
+/* Tailwind's pulse keyframes (used by animate-pulse-slow) */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
