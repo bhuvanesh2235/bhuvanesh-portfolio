@@ -151,7 +151,7 @@ export function KBarProvider({ children }: { children: ReactNode }) {
               animate={{ opacity: 1, scale: 1,    y: 0 }}
               exit={{    opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed top-[20vh] left-1/2 -translate-x-1/2 z-[999] w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-border bg-surface"
+              className="fixed top-[8vh] sm:top-[20vh] left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 z-[999] w-auto sm:w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-border bg-surface"
               style={{ boxShadow: '0 25px 80px rgba(0,0,0,0.7)' }}
             >
               {/* Search row */}

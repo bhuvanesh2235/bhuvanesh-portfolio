@@ -26,25 +26,25 @@ export function Projects({ projects }: Props) {
   }, [projects, activeTag]);
 
   return (
-    <section id="projects" className="section max-w-7xl mx-auto px-6">
-      <div className="mb-12">
+    <section id="projects" className="section max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="mb-8 sm:mb-12">
         <SectionLabel>What I've Built</SectionLabel>
         <SectionHeading>
           Projects that <span className="gradient-text">ship</span>
         </SectionHeading>
-        <p className="mt-4 text-muted max-w-xl">
+        <p className="mt-3 sm:mt-4 text-muted text-sm sm:text-base max-w-xl">
           Every project here is a complete, working product — not a tutorial clone.
           Each one solves a real problem with real ML/AI at its core.
         </p>
       </div>
 
       {/* Tag filters */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-8 sm:mb-10 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
         {allTags.map((tag) => (
           <button
             key={tag}
             onClick={() => setActiveTag(tag)}
-            className={`px-4 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 ${
+            className={`px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-xs font-medium border transition-all duration-200 flex-shrink-0 ${
               activeTag === tag
                 ? 'bg-violet border-violet text-white shadow-glow-violet'
                 : 'border-border text-muted hover:border-violet/40 hover:text-text'
@@ -63,7 +63,7 @@ export function Projects({ projects }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {filtered.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />

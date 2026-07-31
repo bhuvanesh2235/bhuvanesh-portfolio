@@ -9,8 +9,8 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-10 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="border-t border-border py-10 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center sm:text-left">
         {/* Left */}
         <div>
           <Link href="/" className="font-display font-bold text-xl gradient-text">

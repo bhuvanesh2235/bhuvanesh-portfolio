@@ -114,14 +114,14 @@ const BENTO_ITEMS = [
           </div>
           <span className="text-sm text-muted font-medium">Competitive Programming</span>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {[
             { platform: 'LeetCode', value: '1756', desc: 'Top 9.53%' },
             { platform: 'CodeChef', value: '1010', desc: '2-star' },
             { platform: 'HackerRank', value: '5★', desc: 'C badge' },
           ].map((s) => (
-            <div key={s.platform} className="text-center">
-              <div className="font-display text-2xl font-bold gradient-text">{s.value}</div>
+            <div key={s.platform} className="text-center p-2 rounded-xl bg-surface/50 sm:bg-transparent">
+              <div className="font-display text-xl sm:text-2xl font-bold gradient-text">{s.value}</div>
               <div className="text-xs text-muted mt-0.5">{s.platform}</div>
               <div className="text-xs text-muted/60">{s.desc}</div>
             </div>
@@ -154,7 +154,7 @@ const BENTO_ITEMS = [
 
 export function About() {
   return (
-    <section id="about" className="section max-w-7xl mx-auto px-6">
+    <section id="about" className="section max-w-7xl mx-auto px-4 sm:px-6">
       <div className="mb-12">
         <SectionLabel>Who I Am</SectionLabel>
         <SectionHeading>

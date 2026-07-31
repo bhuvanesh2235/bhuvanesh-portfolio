@@ -27,7 +27,7 @@ export function ProjectCard({ project, index }: Props) {
       className="group relative rounded-2xl overflow-hidden border border-border bg-surface transition-all duration-300 hover:border-violet/40 hover:shadow-glow-violet flex flex-col"
     >
       {/* Cover image / gradient placeholder */}
-      <div className="relative h-85 overflow-hidden bg-surface2">
+      <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-surface2">
         {project.cover_image ? (
           <Image
             src={project.cover_image}

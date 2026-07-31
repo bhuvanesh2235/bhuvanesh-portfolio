@@ -39,7 +39,7 @@ export function Skills({ groupedSkills }: Props) {
   const categories = Object.keys(groupedSkills);
 
   return (
-    <section id="skills" className="section max-w-7xl mx-auto px-6">
+    <section id="skills" className="section max-w-7xl mx-auto px-4 sm:px-6">
       <div className="mb-12">
         <SectionLabel>Capabilities</SectionLabel>
         <SectionHeading>

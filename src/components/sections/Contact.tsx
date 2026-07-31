@@ -82,19 +82,19 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section max-w-7xl mx-auto px-6">
-      <div className="mb-12">
+    <section id="contact" className="section max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="mb-8 sm:mb-12">
         <SectionLabel>Get In Touch</SectionLabel>
         <SectionHeading>
           Let's <span className="gradient-text">work together</span>
         </SectionHeading>
-        <p className="mt-4 text-muted max-w-lg">
+        <p className="mt-3 sm:mt-4 text-muted text-sm sm:text-base max-w-lg">
           Whether you have a project in mind, want to discuss AI/ML ideas, or just
           want to say hello — my inbox is always open.
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
 
         {/* Contact form */}
         <motion.form

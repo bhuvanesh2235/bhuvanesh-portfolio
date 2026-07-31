@@ -94,8 +94,8 @@ export function Experience() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section id="experience" className="section max-w-7xl mx-auto px-6">
-      <div className="mb-16 text-center">
+    <section id="experience" className="section max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="mb-12 sm:mb-16 text-center">
         <SectionLabel>Work History</SectionLabel>
         <SectionHeading className="justify-center">
           Where I've <span className="gradient-text">built things</span>
@@ -103,6 +103,14 @@ export function Experience() {
       </div>
 
       <div ref={ref} className="relative">
+        {/* Mobile vertical line */}
+        <div className="lg:hidden absolute left-4 top-2 bottom-2 w-px bg-border">
+          <motion.div
+            style={{ height: lineHeight }}
+            className="w-full bg-gradient-to-b from-violet to-cyan"
+          />
+        </div>
+
         {/* Animated timeline line — desktop only */}
         <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2">
           <motion.div
@@ -111,7 +119,7 @@ export function Experience() {
           />
         </div>
 
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 sm:gap-12 pl-8 lg:pl-0">
           {INTERNSHIPS.map((exp, i) => (
             <TimelineItem key={exp.id} exp={exp} index={i} />
           ))}

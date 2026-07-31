@@ -39,8 +39,8 @@ const EDUCATION = [
 
 export function Education() {
   return (
-    <section id="education" className="section max-w-7xl mx-auto px-6">
-      <div className="mb-12">
+    <section id="education" className="section max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="mb-8 sm:mb-12">
         <SectionLabel>Academic Background</SectionLabel>
         <SectionHeading>
           The <span className="gradient-text">foundation</span>
@@ -61,28 +61,31 @@ export function Education() {
               transition={{ duration: 0.6, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="relative md:pl-16"
             >
-              {/* Timeline dot */}
+              {/* Timeline dot — desktop */}
               <div className={`hidden md:flex absolute left-0 top-6 w-12 h-12 rounded-2xl border items-center justify-center text-2xl ${edu.color}`}>
                 {edu.icon}
               </div>
 
-              <div className={`glass rounded-2xl p-6 border ${edu.color} hover:scale-[1.01] transition-transform duration-300`}>
+              <div className={`glass rounded-2xl p-5 sm:p-6 border ${edu.color} hover:scale-[1.01] transition-transform duration-300`}>
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                   <div>
-                    <h3 className="font-display text-lg font-bold text-text mb-1">
-                      {edu.degree}
-                    </h3>
-                    <div className="flex items-center gap-2 text-sm text-muted">
-                      <GraduationCap size={13} />
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="md:hidden text-xl flex-shrink-0">{edu.icon}</span>
+                      <h3 className="font-display text-base sm:text-lg font-bold text-text">
+                        {edu.degree}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-muted">
+                      <GraduationCap size={13} className="flex-shrink-0" />
                       {edu.school}
                     </div>
                   </div>
-                  <div className="flex flex-col items-start md:items-end gap-2 flex-shrink-0">
+                  <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-start gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-border/50 flex-shrink-0">
                     <div className="flex items-center gap-1.5 text-xs text-muted">
                       <Calendar size={11} />
                       {edu.period}
                     </div>
-                    <div className={`font-display font-bold text-xl ${edu.accent}`}>
+                    <div className={`font-display font-bold text-lg sm:text-xl ${edu.accent}`}>
                       {edu.grade}
                     </div>
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${edu.status === 'Completed'

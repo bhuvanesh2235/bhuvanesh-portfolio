@@ -21,8 +21,8 @@ export function Achievements({ achievements }: Props) {
   const awards = achievements.filter((a) => a.type === 'award');
 
   return (
-    <section id="achievements" className="section max-w-7xl mx-auto px-6">
-      <div className="mb-12">
+    <section id="achievements" className="section max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="mb-8 sm:mb-12">
         <SectionLabel>Recognition</SectionLabel>
         <SectionHeading>
           Numbers & <span className="gradient-text">wins</span>
@@ -30,7 +30,7 @@ export function Achievements({ achievements }: Props) {
       </div>
 
       {/* Stats with animated counters */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10">
         {stats.map((stat, i) => {
           const numericValue = stat.value ? parseInt(stat.value.replace(/\D/g, ''), 10) : 0;
           const isNumeric = !isNaN(numericValue) && numericValue > 0;
@@ -43,12 +43,12 @@ export function Achievements({ achievements }: Props) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass rounded-2xl p-6 border border-border hover:border-violet/30 transition-colors text-center group"
+              className="glass rounded-2xl p-4 sm:p-6 border border-border hover:border-violet/30 transition-colors text-center group"
             >
               {cfg && (
-                <div className="text-2xl mb-3">{cfg.icon}</div>
+                <div className="text-xl sm:text-2xl mb-2 sm:mb-3">{cfg.icon}</div>
               )}
-              <div className="font-display text-3xl md:text-4xl font-extrabold mb-1 gradient-text">
+              <div className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold mb-1 gradient-text">
                 {isNumeric ? (
                   <AnimatedCounter
                     target={numericValue}
@@ -59,11 +59,11 @@ export function Achievements({ achievements }: Props) {
                   stat.value ?? '–'
                 )}
               </div>
-              <div className={`text-xs font-semibold mb-1 ${cfg?.color ?? 'text-muted'}`}>
+              <div className={`text-[11px] sm:text-xs font-semibold mb-1 ${cfg?.color ?? 'text-muted'}`}>
                 {stat.platform ?? ''}
               </div>
               {stat.description && (
-                <div className="text-xs text-muted">{stat.description}</div>
+                <div className="text-[11px] sm:text-xs text-muted leading-tight">{stat.description}</div>
               )}
             </motion.div>
           );
@@ -71,7 +71,7 @@ export function Achievements({ achievements }: Props) {
       </div>
 
       {/* Award cards */}
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {awards.map((award, i) => (
           <motion.div
             key={award.id}

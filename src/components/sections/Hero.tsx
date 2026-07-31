@@ -45,23 +45,23 @@ export function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-cyan/5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-16 sm:pb-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* Left — Text */}
-          <div>
+          <div className="flex flex-col items-start">
             {/* Status pill */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet/30 bg-violet/8 text-violet text-xs font-medium mb-8"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-violet/30 bg-violet/8 text-violet text-xs font-medium mb-6 sm:mb-8 max-w-full"
             >
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-violet" />
               </span>
-              Open to opportunities · Graduated on April 2026
+              <span className="truncate">Open to opportunities · Graduated on April 2026</span>
             </motion.div>
 
             {/* Kinetic headline */}
@@ -69,14 +69,14 @@ export function Hero() {
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-display font-extrabold text-[clamp(3rem,8vw,6rem)] leading-[0.95] tracking-[-0.04em] mb-4"
+              className="font-display font-extrabold text-[clamp(2.5rem,7.5vw,5.5rem)] leading-[1.0] sm:leading-[0.95] tracking-tight mb-4 break-words"
             >
               <span className="block text-text">BHUVANESH</span>
               <span className="block gradient-text">K.</span>
             </motion.h1>
 
             {/* Animated role ticker */}
-            <div className="h-10 overflow-hidden mb-6">
+            <div className="h-10 overflow-hidden mb-6 w-full">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={roleIndex}
@@ -84,7 +84,7 @@ export function Hero() {
                   animate={{ y: 0,  opacity: 1 }}
                   exit={{    y: -40, opacity: 0 }}
                   transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="font-display text-xl md:text-2xl text-muted font-medium"
+                  className="font-display text-lg sm:text-xl md:text-2xl text-muted font-medium truncate"
                 >
                   {ROLES[roleIndex]}
                 </motion.p>
@@ -96,7 +96,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-muted text-base md:text-lg leading-relaxed max-w-lg mb-10"
+              className="text-muted text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-8 sm:mb-10"
             >
               B.E. AI/ML student at Sri Eshwar College of Engineering, building
               intelligent systems at the intersection of deep learning, computer
@@ -108,11 +108,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 w-full sm:w-auto"
             >
               <MagneticButton
                 href="#projects"
-                className="px-6 py-3 rounded-2xl bg-gradient-primary text-white font-semibold text-sm hover:shadow-glow-violet transition-all duration-300 gap-2"
+                className="w-full sm:w-auto justify-center px-6 py-3 rounded-2xl bg-gradient-primary text-white font-semibold text-sm hover:shadow-glow-violet transition-all duration-300 gap-2"
               >
                 View Projects
                 <ArrowDown size={16} />
@@ -121,7 +121,7 @@ export function Hero() {
               <MagneticButton
                 href="/Bhuvanesh_K_Resume.pdf"
                 target="_blank"
-                className="px-6 py-3 rounded-2xl border border-border bg-surface hover:border-violet/40 text-text font-semibold text-sm transition-all duration-300 gap-2"
+                className="w-full sm:w-auto justify-center px-6 py-3 rounded-2xl border border-border bg-surface hover:border-violet/40 text-text font-semibold text-sm transition-all duration-300 gap-2"
               >
                 <Download size={16} />
                 Resume
@@ -129,7 +129,7 @@ export function Hero() {
 
               <MagneticButton
                 href="mailto:bhuvaneshkalidasan2@gmail.com"
-                className="px-6 py-3 rounded-2xl border border-border bg-surface hover:border-cyan/40 text-muted hover:text-text font-semibold text-sm transition-all duration-300 gap-2"
+                className="w-full sm:w-auto justify-center px-6 py-3 rounded-2xl border border-border bg-surface hover:border-cyan/40 text-muted hover:text-text font-semibold text-sm transition-all duration-300 gap-2"
               >
                 <Mail size={16} />
                 Email Me
@@ -141,7 +141,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex gap-8 mt-12 pt-8 border-t border-border"
+              className="grid grid-cols-3 gap-3 sm:gap-8 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border w-full"
             >
               {[
                 { label: 'LeetCode',  value: '#1756', sub: 'Top 9.53%' },
@@ -149,8 +149,8 @@ export function Hero() {
                 { label: 'CGPA',      value: '8.4',   sub: 'out of 10' },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="font-display text-2xl font-bold gradient-text">{s.value}</div>
-                  <div className="text-xs text-muted">{s.sub}</div>
+                  <div className="font-display text-xl sm:text-2xl font-bold gradient-text">{s.value}</div>
+                  <div className="text-[11px] sm:text-xs text-muted">{s.sub}</div>
                 </div>
               ))}
             </motion.div>
@@ -161,7 +161,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end mt-4 lg:mt-0"
           >
             {/* Decorative ring */}
             <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-10 blur-2xl scale-90 animate-pulse-slow" />
@@ -170,13 +170,13 @@ export function Hero() {
             <div className="relative">
               {/* Gradient border ring */}
               <div className="absolute -inset-1 rounded-3xl bg-gradient-primary opacity-60 blur-sm" />
-              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden border-2 border-violet/20">
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden border-2 border-violet/20">
                 <Image
                   src="/Bhuvanesh_K.jpg"
                   alt="Bhuvanesh K"
                   fill
                   priority
-                  sizes="(max-width: 768px) 288px, 384px"
+                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
                   className="object-cover object-top"
                 />
               </div>
@@ -185,11 +185,11 @@ export function Hero() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-4 -left-6 glass rounded-2xl px-4 py-3 border border-border"
+                className="absolute -bottom-3 left-2 sm:-left-6 glass rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 border border-border shadow-lg"
               >
-                <div className="text-xs text-muted">Currently at</div>
-                <div className="font-display font-bold text-sm text-text">Sri Eshwar College</div>
-                <div className="text-xs gradient-text">AI & ML • 2022–2026</div>
+                <div className="text-[11px] text-muted">Currently at</div>
+                <div className="font-display font-bold text-xs sm:text-sm text-text">Sri Eshwar College</div>
+                <div className="text-[11px] gradient-text">AI & ML • 2022–2026</div>
               </motion.div>
             </div>
           </motion.div>

@@ -40,19 +40,19 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-20 max-w-4xl mx-auto px-6">
+      <main className="pt-24 sm:pt-28 pb-16 sm:pb-20 max-w-4xl mx-auto px-4 sm:px-6">
 
         {/* Back */}
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-muted hover:text-text text-sm mb-10 transition-colors"
+          className="inline-flex items-center gap-2 text-muted hover:text-text text-sm mb-6 sm:mb-10 transition-colors"
         >
           <ArrowLeft size={14} />
           Back to Projects
         </Link>
 
         {/* Hero */}
-        <div className="mb-10">
+        <div className="mb-8 sm:mb-10">
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tags.map((tag) => (
               <span key={tag} className="tag-pill">{tag}</span>
@@ -64,22 +64,22 @@ export default async function ProjectPage({ params }: Props) {
             )}
           </div>
 
-          <h1 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-4 break-words">
             {project.title}
           </h1>
 
           {project.tagline && (
-            <p className="text-xl text-muted leading-relaxed max-w-2xl">{project.tagline}</p>
+            <p className="text-base sm:text-xl text-muted leading-relaxed max-w-2xl">{project.tagline}</p>
           )}
 
           {/* Action buttons */}
-          <div className="flex gap-3 mt-6">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6">
             {project.demo_url && (
               <a
                 href={project.demo_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-primary text-white font-medium text-sm hover:shadow-glow-violet transition-all"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-primary text-white font-medium text-sm hover:shadow-glow-violet transition-all w-full sm:w-auto"
               >
                 <ExternalLink size={14} />
                 Live Demo
@@ -90,7 +90,7 @@ export default async function ProjectPage({ params }: Props) {
                 href={project.github_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-violet/30 bg-violet/10 text-text hover:text-white hover:border-violet/60 hover:bg-violet/20 hover:shadow-glow-violet font-medium text-sm transition-all duration-300"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-violet/30 bg-violet/10 text-text hover:text-white hover:border-violet/60 hover:bg-violet/20 hover:shadow-glow-violet font-medium text-sm transition-all duration-300 w-full sm:w-auto"
               >
                 <GitFork size={15} className="text-violet" />
                 View Code on GitHub
@@ -101,7 +101,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Cover image */}
         {project.cover_image && (
-          <div className="relative h-64 md:h-96 rounded-3xl overflow-hidden mb-12 border border-border">
+          <div className="relative h-56 sm:h-72 md:h-96 rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-12 border border-border">
             <Image
               src={project.cover_image}
               alt={project.title}
@@ -115,9 +115,9 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Description */}
         {project.description && (
-          <div className="glass rounded-2xl p-8 border border-border mb-8">
-            <h2 className="font-display text-xl font-bold text-text mb-4">Overview</h2>
-            <p className="text-muted leading-relaxed">{project.description}</p>
+          <div className="glass rounded-2xl p-5 sm:p-8 border border-border mb-6 sm:mb-8">
+            <h2 className="font-display text-lg sm:text-xl font-bold text-text mb-3 sm:mb-4">Overview</h2>
+            <p className="text-muted text-sm sm:text-base leading-relaxed">{project.description}</p>
           </div>
         )}
 
@@ -127,12 +127,12 @@ export default async function ProjectPage({ params }: Props) {
             const content = project[key as keyof typeof project] as string | null;
             if (!content) return null;
             return (
-              <div key={key} className="glass rounded-2xl p-8 border border-border hover:border-violet/30 transition-colors">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{emoji}</span>
-                  <h2 className="font-display text-xl font-bold gradient-text">{label}</h2>
+              <div key={key} className="glass rounded-2xl p-5 sm:p-8 border border-border hover:border-violet/30 transition-colors">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <span className="text-xl sm:text-2xl">{emoji}</span>
+                  <h2 className="font-display text-lg sm:text-xl font-bold gradient-text">{label}</h2>
                 </div>
-                <p className="text-muted leading-relaxed whitespace-pre-line">{content}</p>
+                <p className="text-muted text-sm sm:text-base leading-relaxed whitespace-pre-line">{content}</p>
               </div>
             );
           })}
@@ -140,8 +140,8 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Tech stack */}
         {project.tech_stack.length > 0 && (
-          <div className="mt-8 glass rounded-2xl p-6 border border-border">
-            <h2 className="font-display text-lg font-bold text-text mb-4">Tech Stack</h2>
+          <div className="mt-6 sm:mt-8 glass rounded-2xl p-5 sm:p-6 border border-border">
+            <h2 className="font-display text-base sm:text-lg font-bold text-text mb-4">Tech Stack</h2>
             <div className="flex flex-wrap gap-2">
               {project.tech_stack.map((tech) => (
                 <span key={tech} className="tag-pill">{tech}</span>

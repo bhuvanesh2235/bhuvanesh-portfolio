@@ -18,7 +18,7 @@ const ISSUER_COLORS: Record<string, string> = {
 
 export function Certifications({ certifications }: Props) {
   return (
-    <section id="certifications" className="section max-w-7xl mx-auto px-6">
+    <section id="certifications" className="section max-w-7xl mx-auto px-4 sm:px-6">
       <div className="mb-12">
         <SectionLabel>Credentials</SectionLabel>
         <SectionHeading>
