@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { SectionHeading, SectionLabel } from '@/components/ui/SectionHeading';
-import { Briefcase, Calendar, ChevronRight } from 'lucide-react';
+import { Briefcase, Calendar } from 'lucide-react';
 import type { Experience } from '@/types';
 
 const INTERNSHIPS: Experience[] = [
@@ -39,55 +39,6 @@ const INTERNSHIPS: Experience[] = [
   },
 ];
 
-function TimelineItem({ exp, index }: { exp: Experience; index: number }) {
-  const isLeft = index % 2 === 0;
-  return (
-    <div className={`relative flex ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-start gap-8 lg:gap-0`}>
-      {/* Card */}
-      <motion.div
-        initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`w-full lg:w-[calc(50%-2rem)] ${isLeft ? 'lg:mr-auto lg:pr-8' : 'lg:ml-auto lg:pl-8'}`}
-      >
-        <div className="glass rounded-2xl p-6 hover:border-violet/40 transition-colors duration-300 group">
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <div className="flex items-center gap-2 text-xs text-muted mb-1">
-                <Calendar size={11} />
-                {exp.year}
-              </div>
-              <h3 className="font-display text-lg font-bold text-text group-hover:gradient-text transition-all">
-                {exp.company}
-              </h3>
-              <p className="text-sm text-violet font-medium mt-0.5">{exp.role}</p>
-            </div>
-            <div className="w-10 h-10 rounded-xl bg-violet/10 border border-violet/20 flex items-center justify-center flex-shrink-0">
-              <Briefcase size={16} className="text-violet" />
-            </div>
-          </div>
-
-          {exp.description && (
-            <p className="text-sm text-muted leading-relaxed mb-4">{exp.description}</p>
-          )}
-
-          <div className="flex flex-wrap gap-1.5">
-            {exp.tags.map((tag) => (
-              <span key={tag} className="tag-pill">{tag}</span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Center dot — desktop only */}
-      <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-surface2 border-2 border-violet items-center justify-center z-10 top-6">
-        <div className="w-2 h-2 rounded-full bg-violet" />
-      </div>
-    </div>
-  );
-}
-
 export function Experience() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
@@ -95,33 +46,63 @@ export function Experience() {
 
   return (
     <section id="experience" className="section max-w-7xl mx-auto px-4 sm:px-6">
-      <div className="mb-12 sm:mb-16 text-center">
+      <div className="mb-10 sm:mb-16 text-center">
         <SectionLabel>Work History</SectionLabel>
         <SectionHeading className="justify-center">
           Where I've <span className="gradient-text">built things</span>
         </SectionHeading>
       </div>
 
-      <div ref={ref} className="relative">
-        {/* Mobile vertical line */}
-        <div className="lg:hidden absolute left-4 top-2 bottom-2 w-px bg-border">
+      <div ref={ref} className="relative max-w-3xl mx-auto">
+        {/* Vertical timeline line */}
+        <div className="absolute left-4 sm:left-5 top-2 bottom-2 w-px bg-border">
           <motion.div
             style={{ height: lineHeight }}
             className="w-full bg-gradient-to-b from-violet to-cyan"
           />
         </div>
 
-        {/* Animated timeline line — desktop only */}
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2">
-          <motion.div
-            style={{ height: lineHeight }}
-            className="w-full bg-gradient-to-b from-violet to-cyan"
-          />
-        </div>
-
-        <div className="flex flex-col gap-8 sm:gap-12 pl-8 lg:pl-0">
+        <div className="flex flex-col gap-6 sm:gap-10 pl-12 sm:pl-16">
           {INTERNSHIPS.map((exp, i) => (
-            <TimelineItem key={exp.id} exp={exp} index={i} />
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative"
+            >
+              {/* Timeline dot */}
+              <div className="absolute -left-12 sm:-left-16 top-5 sm:top-6 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-surface2 border-2 border-violet flex items-center justify-center z-10">
+                <Briefcase size={13} className="text-violet" />
+              </div>
+
+              <div className="glass rounded-2xl p-4 sm:p-6 hover:border-violet/40 transition-colors duration-300 group">
+                {/* Header */}
+                <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 text-xs text-muted mb-1">
+                      <Calendar size={10} className="flex-shrink-0" />
+                      {exp.year}
+                    </div>
+                    <h3 className="font-display text-base sm:text-lg font-bold text-text group-hover:gradient-text transition-all leading-tight">
+                      {exp.company}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-violet font-medium mt-0.5">{exp.role}</p>
+                  </div>
+                </div>
+
+                {exp.description && (
+                  <p className="text-xs sm:text-sm text-muted leading-relaxed mb-3 sm:mb-4">{exp.description}</p>
+                )}
+
+                <div className="flex flex-wrap gap-1.5">
+                  {exp.tags.map((tag) => (
+                    <span key={tag} className="tag-pill">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

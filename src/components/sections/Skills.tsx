@@ -40,22 +40,20 @@ export function Skills({ groupedSkills }: Props) {
 
   return (
     <section id="skills" className="section max-w-7xl mx-auto px-4 sm:px-6">
-      <div className="mb-12">
+      <div className="mb-8 sm:mb-12">
         <SectionLabel>Capabilities</SectionLabel>
         <SectionHeading>
           Tools of the <span className="gradient-text">craft</span>
         </SectionHeading>
       </div>
 
-      <div className="bento-grid">
+      {/* Responsive grid: 1 col → 2 col → feature AI/ML wider on lg */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {categories.map((category, catIndex) => {
-          const skills   = groupedSkills[category];
-          const icon     = CATEGORY_ICONS[category]  ?? '·';
-          const color    = CATEGORY_COLORS[category] ?? 'border-border bg-surface';
-          const textColor = CATEGORY_TEXT[category]  ?? 'text-violet';
-
-          // Feature AI/ML category — span wider
-          const span = category === 'AI/ML' ? 'lg:col-span-7' : 'lg:col-span-5';
+          const skills    = groupedSkills[category];
+          const icon      = CATEGORY_ICONS[category]  ?? '·';
+          const color     = CATEGORY_COLORS[category] ?? 'border-border bg-surface';
+          const textColor = CATEGORY_TEXT[category]   ?? 'text-violet';
 
           return (
             <motion.div
@@ -63,32 +61,31 @@ export function Skills({ groupedSkills }: Props) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              className={`${span} glass rounded-2xl p-6 border ${color} transition-all duration-300 hover:scale-[1.01]`}
+              transition={{ duration: 0.5, delay: catIndex * 0.07 }}
+              className={`glass rounded-2xl p-4 sm:p-5 border ${color} transition-all duration-300 hover:scale-[1.01]`}
             >
               {/* Category header */}
-              <div className="flex items-center gap-3 mb-5">
-                <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-base font-mono font-bold ${textColor} border ${color}`}>
+              <div className="flex items-center gap-2 sm:gap-3 mb-4">
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-mono font-bold ${textColor} border ${color}`}>
                   {icon}
                 </div>
-                <h3 className={`font-display font-bold text-base ${textColor}`}>
+                <h3 className={`font-display font-bold text-sm sm:text-base ${textColor}`}>
                   {category}
                 </h3>
               </div>
 
-              {/* Skills */}
-              <div className="flex flex-wrap gap-2">
+              {/* Skill chips */}
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {skills.map((skill, i) => (
                   <motion.div
                     key={skill.id}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.85 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: catIndex * 0.05 + i * 0.03 }}
-                    whileHover={{ y: -2, scale: 1.05 }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface border border-border hover:border-violet/30 transition-all cursor-default"
+                    transition={{ delay: catIndex * 0.04 + i * 0.025 }}
+                    className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-surface border border-border hover:border-violet/30 transition-all cursor-default"
                   >
-                    <span className="text-xs text-muted font-medium">{skill.name}</span>
+                    <span className="text-[11px] sm:text-xs text-muted font-medium">{skill.name}</span>
                   </motion.div>
                 ))}
               </div>

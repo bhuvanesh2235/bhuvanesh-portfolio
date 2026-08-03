@@ -17,7 +17,7 @@ export function SectionHeading({ children, className, delay = 0 }: Props) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={cn(
-        'font-display text-3xl md:text-5xl font-bold tracking-tight',
+        'font-display text-[1.75rem] sm:text-3xl md:text-[2.75rem] lg:text-5xl font-bold tracking-tight leading-tight',
         className
       )}
     >
