@@ -32,15 +32,7 @@ export function Hero() {
   }, []);
 
   return (
-    /*
-     * KEY FIX:
-     * – NO overflow-hidden / overflow-x-hidden on this element
-     *   (overflow-x:hidden forces overflow-y:auto which clips content)
-     * – On mobile: section is just as tall as its content (no min-h-screen)
-     * – On lg+: min-h-screen with vertical centering
-     * – Background glow wrapper uses overflow-hidden instead (it's decorative only)
-     */
-    <section id="hero" className="relative lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-start lg:justify-center">
       {/* Canvas — direct child, NOT inside overflow-hidden (canvas must never be clipped) */}
       <NeuralParticleField />
 
