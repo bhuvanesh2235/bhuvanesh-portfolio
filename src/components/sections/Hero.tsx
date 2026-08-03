@@ -41,9 +41,11 @@ export function Hero() {
      * – Background glow wrapper uses overflow-hidden instead (it's decorative only)
      */
     <section id="hero" className="relative lg:min-h-screen lg:flex lg:flex-col lg:justify-center">
-      {/* Background layer — overflow-hidden lives here, not on the section */}
+      {/* Canvas — direct child, NOT inside overflow-hidden (canvas must never be clipped) */}
+      <NeuralParticleField />
+
+      {/* Glow blobs only — overflow-hidden is safe here (purely decorative blurs) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <NeuralParticleField />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-violet/5 blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-cyan/5 blur-3xl" />
       </div>
