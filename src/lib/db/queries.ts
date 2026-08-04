@@ -23,7 +23,7 @@ export async function getPublishedProjects(): Promise<Project[]> {
   const r = await sql`
     SELECT * FROM projects
     WHERE published = true
-    ORDER BY featured DESC, sort_order ASC, created_at DESC
+    ORDER BY year ASC, sort_order ASC, created_at DESC
   `;
   return rows<Project>(r);
 }
@@ -40,7 +40,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 
 export async function getExperiences(): Promise<Experience[]> {
   const sql = getDb();
-  const r = await sql`SELECT * FROM experiences ORDER BY sort_order ASC`;
+  const r = await sql`SELECT * FROM experiences ORDER BY year ASC, sort_order ASC`;
   return rows<Experience>(r);
 }
 

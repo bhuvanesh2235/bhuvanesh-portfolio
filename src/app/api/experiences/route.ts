@@ -8,7 +8,7 @@ export async function GET() {
     const rows = await sql`
       SELECT id, company, role, year, description, tags, sort_order
       FROM experiences
-      ORDER BY sort_order ASC
+      ORDER BY year ASC, sort_order ASC
     `;
     return NextResponse.json(rows);
   } catch (err) {
