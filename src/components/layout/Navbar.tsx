@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useCommandPalette } from '@/components/layout/CommandPalette';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { MagneticButton } from '@/components/ui/MagneticButton';
@@ -22,6 +23,11 @@ export function Navbar() {
   const [scrolled,   setScrolled]   = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { toggle } = useCommandPalette();
+  const pathname   = usePathname();
+
+  // On sub-pages (e.g. /projects/...) hash links must be absolute so the
+  // browser navigates to the homepage section, not anchors within the current page.
+  const navHref = (hash: string) => pathname === '/' ? hash : `/${hash}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -60,7 +66,7 @@ export function Navbar() {
             {NAV_LINKS.slice(0, 4).map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={navHref(link.href)}
                 className="text-sm text-muted hover:text-text transition-colors animated-underline"
               >
                 {link.label}
@@ -143,7 +149,7 @@ export function Navbar() {
             {NAV_LINKS.map((link, i) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={navHref(link.href)}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center h-12 px-3 rounded-xl font-display text-lg font-semibold text-muted hover:text-text hover:bg-surface2 transition-all"
                 style={{ animationDelay: `${i * 50}ms` }}
